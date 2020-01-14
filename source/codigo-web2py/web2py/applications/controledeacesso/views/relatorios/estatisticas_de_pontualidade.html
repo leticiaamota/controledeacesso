@@ -1,0 +1,144 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+	<title>Estatísticas de Pontualidade e Frequência</title>
+{{end}}
+
+{{block css}}
+<script>
+window.onload = function() {
+
+	var chart = new CanvasJS.Chart("assiduidadeTotal", {
+		animationEnabled: true,
+		title: {
+			text: "Panorama total de assiduidade do funcionário"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			yValueFormatString: "##0.00\"%\"",
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: atrasos, label: "Atrasos"},
+				{y: ausencias, label: "Ausências"},
+				{y: comparecimentos, label: "Comparecimentos"}
+			]
+		}]
+	});
+
+
+	var chart2 = new CanvasJS.Chart("assiduidadeSemanal", {
+		animationEnabled: true,
+		title: {
+			text: "Panorama semanal de assiduidade do funcionário"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 500,
+			yValueFormatString: "##0.00\"%\"",
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: atrasos_semanal, label: "Atrasos"},
+				{y: ausencias_semanal, label: "Ausências"},
+				{y: comparecimentos_semanal, label: "Comparecimentos"}
+			]
+		}]
+	});
+
+	if (agendamentos==0) {
+	  //  block of code to be executed if the condition is true
+	} else { 
+	  //  block of code to be executed if the condition is false
+	  chart.render();
+	}
+
+	if (agendamentos_semanal==0) {
+	  //  block of code to be executed if the condition is true
+	} else { 
+	  //  block of code to be executed if the condition is false
+	  chart2.render();
+	}
+
+}
+
+</script>
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Estatísticas de Pontualidade e Frequência</h1>
+
+		{{if session.auth.user.is_admin==True:}}
+			<div align="center">
+				<form action="" method="post">
+	  				<input class="form-control-label col-md-5" name="funcionario" placeholder="Pesquisar" />
+	  				<input type="submit" value="Pesquisar" />
+				</form>
+			</div>
+		{{pass}}
+
+		<br>
+		<br>
+		<br>
+
+		{{if total_agendamentos != None:}}
+			<h2 align="center">Últimos agendamentos</h2>
+
+				<table class="table table-striped" align="center">
+				    <thead>
+				        <tr>
+				            <th>Data de agendamento</th>
+				            <th>Horário agendado</th>
+				            <th>Horário de chegada</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {{for ag in ultimos_agendamentos:}}
+				        <tr>
+				            <td>{{=ag.pdtagendamento}}</td>
+				            <td>{{=ag.phrentrada}}</td>
+				            <td>{{=ag.hrchegada}}</td>
+				        </tr>
+				    {{pass}}
+				    </tbody>
+				</table>
+
+			{{pass}}
+
+		<br>
+		<br>
+
+		{{if total_agendamentos != None:}}
+			<div id="assiduidadeTotal" style="height: 370px; width: 100%;"></div>
+			{{pass}}
+
+		<br>
+		<br>
+
+		{{if total_agendamentos_semanal != None:}}
+			<div id="assiduidadeSemanal" style="height: 370px; width: 100%;"></div>
+			{{pass}}
+
+		
+
+{{end}}
+
+{{block script}}
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script type="text/javascript">
+	var agendamentos ={{=total_agendamentos}}
+	var comparecimentos ={{=percentual_comparecimentos}};
+	var atrasos ={{=percentual_atrasos}};
+	var ausencias ={{=percentual_ausencias}};
+</script>
+
+<script type="text/javascript">
+	var agendamentos_semanal ={{=total_agendamentos_semanal}}
+	var comparecimentos_semanal ={{=percentual_comparecimentos_semanal}};
+	var atrasos_semanal ={{=percentual_atrasos_semanal}};
+	var ausencias_semanal ={{=percentual_ausencias_semanal}};
+</script>
+{{end}}

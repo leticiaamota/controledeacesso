@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Controle de Acesso LSI">
+    <meta name="author" content="Letícia Mota">
+    <link rel="icon" href="{{=URL('static','images',args='favicon.ico')}}">
+
+    {{block title}}
+    <title>Controle de Acesso LSI</title>
+    {{end}}
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{=URL('static','css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{=URL('static','css/jumbotron.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','css/csspadrao.css')}}">
+    {{block css}}
+    {{end}}
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{=URL('home','home')}}">Controle de Acesso LSI</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="{{=URL('cadastros','cadastrar_agendamento')}}">Agendamentos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('cadastros','associar_tag_master')}}">Associar Tag-Master</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('cadastros','associar_tag_usuario')}}">Associar Tag-Usuário</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('cadastros','cadastrar_sala')}}">Salas</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('cadastros','cadastrar_usuario')}}">Usuários</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown02">
+              <a class="dropdown-item" href="{{=URL('relatorios','relatorio_de_pontualidade')}}">Relatório de Pontualidade</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('relatorios','taxa_de_frequencia')}}">Relatório de Taxa de Frequência</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
+              <a class="dropdown-item" href="{{=URL('registros','registro_de_agendamentos')}}">Agendamentos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('registros','registro_de_salas')}}">Salas</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{=URL('registros','registro_de_usuarios')}}">Usuários</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>      
+      </div>
+    </nav>
+
+    {{block jumbotron}}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Controle de Acesso LSI</h1>
+        <p>O sistema de controle de acesso proposto leva em conta a existência de múltiplos usuários (professores), múltiplos ambientes (salas), restrições de horário (horários das aulas dos professores) e provê uma interface gerenciável por meio de uma aplicação web.</p>
+        <p><a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/leticiamota-uea/leticiamota-tcc" role="button">Entenda mais &raquo;</a></p>
+      </div>
+    </div>
+    {{end}}
+
+    <div class="container">
+      {{block main}}
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Cadastros</h2>
+          <p>A aba CADASTROS compreende as páginas de inclusão de novos Agendamentos, Tags, Salas e Usuários ao banco de dados do sistema, permitindo seu gerenciamento e/ou interação aos demais módulos deste projeto.</p>
+          <!--  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+        </div>
+        <div class="col-md-4">
+          <h2>Relatórios</h2>
+          <p>A aba RELATÓRIOS proporciona aos usuários fichas de Pontualidade e Taxa de Frequência a partir de seus dados de interação ao objeto inteligente do sistema.</p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+       </div>
+        <div class="col-md-4">
+          <h2>Registros</h2>
+          <p>A aba REGISTROS disponibiliza páginas de gerenciamento de Agendamentos, Salas e Usuários previamente cadastrados no sistema proposto.</p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+        </div>
+      </div>
+
+      <hr>
+      {{end}}
+
+      <footer>
+        <p>&copy; Letícia Mota 2019</p>
+      </footer> 
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{=URL('static','js/ie10-viewport-bug-workaround.js')}}"></script>
+    {{block script}}
+    {{end}}
+
+  </body>
+</html>

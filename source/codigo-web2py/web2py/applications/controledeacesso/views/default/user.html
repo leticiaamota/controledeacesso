@@ -1,0 +1,67 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+    <title>
+        {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+    </title>
+{{end}}
+
+{{block css}}   
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','css/login.css')}}">
+{{end}}
+
+{{block nav}}
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{=URL('default','index')}}">Controle de Acesso LSI</a>
+    </nav>
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+    <div class="d-flex justify-content-center h-100">
+        <div class="card" >
+            <div class="card-header">
+                <h3>
+                    {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div id="web2py_user_form" class="text-white">
+                  {{=form}}
+                 <!-- {{if request.args(0)=='login':}}
+                    {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+                      <br/>
+                      <a href="{{=URL(args='request_reset_password')}}">Esqueceu sua senha?</a>
+                    {{pass}}
+                  {{pass}}-->
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{block script}}
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            jQuery("#web2py_user_form input:visible:enabled:first").focus();
+        {{if request.args(0)=='register':}}
+            web2py_validate_entropy(jQuery('#auth_user_password'),100);
+        {{elif request.args(0)=='change_password':}}
+            web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+        {{pass}}
+        </script>
+{{end}}

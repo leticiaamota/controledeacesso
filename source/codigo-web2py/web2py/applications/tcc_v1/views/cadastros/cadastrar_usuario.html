@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+
+{{block title}}
+	<title>Cadastro Usuário</title>
+{{end}}
+
+{{block css}}
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/cadUser.css')}}">
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Cadastro de Usuário</h1>
+	{{=formUsuarios}}
+{{end}}

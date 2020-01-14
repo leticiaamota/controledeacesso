@@ -1,0 +1,101 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+	<title>Cadastro Salas</title>
+{{end}}
+
+{{block css}}
+	
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Cadastro de Salas</h1>
+	
+	{{if formSalas.errors:}}
+	<div class="alert alert-danger" role="alert">
+	  O formulário submetido contém o(s) seguinte(s) erro(s):
+	  <ul>
+	  {{for fieldname in formSalas.errors:}}
+	    <li><b>{{=fieldname}}</b> error: {{=formSalas.errors[fieldname]}}</li>
+	  {{pass}}
+	  </ul>
+	  {{formSalas.errors.clear()}}
+	</div>
+	{{pass}}
+
+	{{=formSalas.custom.begin}}
+		<div class="form-group" id="salas_bloco__row">
+			<label class="form-control-label col-sm-3" for="salas_bloco" id="salas_bloco__label">Bloco</label>
+			<div class="col-sm-9">
+				<div onchange="preencher()">
+					{{=formSalas.custom.widget.bloco}}
+				</div>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_numero__row">
+			<label class="form-control-label col-sm-3" for="salas_numero" id="salas_numero__label">Número</label>
+			<div class="col-sm-9">
+				<input class="integer form-control" id="salas_numero" name="numero" type="text" value="" onchange="preencher()"/>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_descricao__row">
+			<label class="form-control-label col-sm-3" for="salas_descricao" id="salas_descricao__label">Descrição</label>
+			<div class="col-sm-9">
+				<input class="string form-control" id="salas_descricao" name="descricao" type="text" value=""/>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_codigo__row">
+			<label class="readonly form-control-label col-sm-3" for="salas_codigo" id="salas_codigo__label">Código</label>
+			<div class="col-sm-9">
+				<div id="printcode"></div>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_topicoEntrada__row">
+			<label class="readonly form-control-label col-sm-3" for="salas_topicoEntrada" id="salas_topicoEntrada__label">Tópico de Entrada</label>
+			<div class="col-sm-9">
+				<div id="topicoEntrada"></div>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_topicoSaida__row">
+			<label class="readonly form-control-label col-sm-3" for="salas_topicoSaida" id="salas_topicoSaida__label">Tópico de Saída</label>
+			<div class="col-sm-9">
+				<div id="topicoSaida"></div>
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="salas_status__row">
+			<div class="col-sm-offset-3 col-sm-9">
+				<div class="checkbox">
+					<label class="readonly" id="salas_status__label">
+						<input checked="checked" class="boolean" disabled="disabled" id="salas_status" name="status" type="checkbox" value="on" /> Cadastro Ativo
+					</label>
+					<span class="help-block"></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			{{=formSalas.custom.submit}}
+		</div>
+	{{=formSalas.custom.end}}
+{{end}}
+
+
+{{block script}}
+	<script type="text/javascript">
+		function preencher(){
+			var x = document.getElementById('salas_bloco').value;
+			var y = document.getElementById('salas_numero').value;
+  			document.getElementById("printcode").innerHTML = x + y;
+  			document.getElementById("topicoEntrada").innerHTML = "topicoEntrada/"+x+y;
+  			document.getElementById("topicoSaida").innerHTML = "topicoSaida/"+x+y;
+		}
+	</script>
+{{end}}

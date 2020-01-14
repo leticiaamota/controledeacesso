@@ -1,0 +1,11 @@
+<style>
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked {
+    content: '\f05d';
+}
+
+</style>

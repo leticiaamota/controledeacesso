@@ -1,0 +1,151 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+	<title>Cadastrar Agendamento</title>
+{{end}}
+
+{{block css}}
+	
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Cadastrar Agendamento</h1>
+
+	{{if formAgendamento.errors:}}
+	<div class="alert alert-danger" role="alert">
+	  O formulário submetido contém o(s) seguinte(s) erro(s):
+	  <ul>
+	  {{for fieldname in formAgendamento.errors:}}
+	    <li><b>{{=fieldname}}</b> error: {{=formAgendamento.errors[fieldname]}}</li>
+	  {{pass}}
+	  </ul>
+	  {{formAgendamento.errors.clear()}}
+	</div>
+	{{pass}}
+
+	<!--{{=formAgendamento}}-->
+
+	{{=formAgendamento.custom.begin}}
+		<div class="form-group" id="agendamentos_funcionario__row">
+			<label class="form-control-label col-sm-3" for="agendamentos_funcionario" id="agendamentos_funcionario__label">Funcionário</label>
+			<div class="col-sm-9">
+				{{=formAgendamento.custom.widget.funcionario}}
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group" id="agendamentos_sala__row">
+			<label class="form-control-label col-sm-3" for="agendamentos_sala" id="agendamentos_sala__label">Sala</label>
+			<div class="col-sm-9">
+				{{=formAgendamento.custom.widget.sala}}
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-inline"> 
+				<div class="form-group" id="agendamentos_dinicio__row">
+					<label class="form-control-label col-sm-4" for="agendamentos_dinicio" id="agendamentos_dinicio__label">Data inicial</label>
+					<div class="col-sm-9">
+						<input class="form-control date" id="agendamentos_dinicio" name="dinicio" type="text" value="">
+						<span class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group" id="agendamentos_dfim__row">
+					<label class="form-control-label col-sm-4" for="agendamentos_dfim" id="agendamentos_dfim__label">Data final</label>
+					<div class="col-sm-9">
+						<input class="form-control date" id="agendamentos_dfim" name="dfim" type="text" value="">
+						<span class="help-block"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" id="agendamentos_periodicidade__row">
+			<label class="form-control-label col-sm-3" for="agendamentos_periodicidade" id="agendamentos_periodicidade__label">Periodicidade</label>
+			<div class="col-sm-9">
+				<table class="generic-widget web2py_checkboxeswidget" id="agendamentos_periodicidade" name="periodicidade">
+					<tbody>
+						<tr>
+							<td>
+								<input id="periodicidadeSegunda" name="periodicidade" type="checkbox" value="Segunda">
+								<label for="periodicidadeSegunda">Segunda</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeTerça" name="periodicidade" type="checkbox" value="Terça">
+								<label for="periodicidadeTerça">Terça</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeQuarta" name="periodicidade" type="checkbox" value="Quarta">
+								<label for="periodicidadeQuarta">Quarta</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeQuinta" name="periodicidade" type="checkbox" value="Quinta">
+								<label for="periodicidadeQuinta">Quinta</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeSexta" name="periodicidade" type="checkbox" value="Sexta">
+								<label for="periodicidadeSexta">Sexta</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeSábado" name="periodicidade" type="checkbox" value="Sábado">
+								<label for="periodicidadeSábado">Sábado</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="periodicidadeDomingo" name="periodicidade" type="checkbox" value="Domingo">
+								<label for="periodicidadeDomingo">Domingo</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input disabled="disabled" name="periodicidade" style="display:none;" type="text" value="">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<span class="help-block"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="form-inline">
+				<div class="form-group" id="agendamentos_hrentrada__row">
+					<label class="form-control-label col-sm-5" for="agendamentos_hrentrada" id="agendamentos_hrentrada__label">Horário de entrada</label>
+					<div class="col-sm-9">
+						<input class="time form-control" id="agendamentos_hrentrada" name="hrentrada" type="text" value="">
+						<span class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group" id="agendamentos_hrsaida__row">
+					<label class="form-control-label col-sm-5" for="agendamentos_hrsaida" id="agendamentos_hrsaida__label">Horário de saída</label>
+					<div class="col-sm-9">
+						<input class="time form-control" id="agendamentos_hrsaida" name="hrsaida" type="text" value="">
+						<span class="help-block"></span>
+					</div>
+				</div>
+			</div> 
+		</div>
+		<div class="col-sm-9">
+			{{=formAgendamento.custom.submit}}
+		</div>
+	{{=formAgendamento.custom.end}}
+{{end}}
+
+{{block script}}
+	<script type="text/javascript">
+		$('.datepicker').datepicker();
+	</script>
+{{end}}

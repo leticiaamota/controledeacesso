@@ -1,0 +1,30 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+	<title>Associar Tag-Usuário</title>
+{{end}}
+
+{{block css}}
+	
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Associar Tag-Usuário</h1>
+
+	{{if associarTagUser.errors:}}
+	<div class="alert alert-danger" role="alert">
+	  O formulário submetido contém o(s) seguinte(s) erro(s):
+	  <ul>
+	  {{for fieldname in associarTagUser.errors:}}
+	    <li><b>{{=fieldname}}</b> error: {{=associarTagUser.errors[fieldname]}}</li>
+	  {{pass}}
+	  </ul>
+	  {{associarTagUser.errors.clear()}}
+	</div>
+	{{pass}}
+
+	{{=associarTagUser}}
+{{end}}

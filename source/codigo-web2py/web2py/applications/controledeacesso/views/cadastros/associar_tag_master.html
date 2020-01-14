@@ -1,0 +1,31 @@
+{{extend 'layoutapp.html'}}
+
+{{block title}}
+	<title>Associar Tag-Master</title>
+{{end}}
+
+{{block css}}
+	
+{{end}}
+
+{{block jumbotron}}
+{{end}}
+
+{{block main}}
+	<h1>Associar Tag-Master</h1>
+
+	{{if associarTagMaster.errors:}}
+	<div class="alert alert-danger" role="alert">
+	  O formulário submetido contém o(s) seguinte(s) erro(s):
+	  <ul>
+	  {{for fieldname in associarTagMaster.errors:}}
+	    <li><b>{{=fieldname}}</b> error: {{=associarTagMaster.errors[fieldname]}}</li>
+	  {{pass}}
+	  </ul>
+	  {{associarTagMaster.errors.clear()}}
+	</div>
+	{{pass}}
+
+	
+	{{=associarTagMaster}}
+{{end}}
